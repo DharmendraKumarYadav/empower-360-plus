@@ -1,0 +1,180 @@
+<mat-toolbar color="primary">
+  <ion-menu-button color="light"></ion-menu-button>
+  <span>Approved</span>
+  <span class="example-fill-remaining-space"></span>
+  <ion-icon name="more"></ion-icon>
+</mat-toolbar>
+
+
+<ion-content>
+
+  <mat-card class="example-card" style="padding: 0px">
+    <img mat-card-image src="../../assets/Submit_bg.jpg" alt="Submit">
+  </mat-card>
+  <mat-card *ngFor="let item of items">
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{item.bookingId}}
+          </mat-panel-title>
+          <mat-panel-description></mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-list>
+          <ion-item-divider>
+            <ion-col size="5">
+              <ion-text>
+                Category :
+              </ion-text>
+            </ion-col>
+            <ion-col size="7">
+              <ion-text>
+                {{item.category}}
+              </ion-text>
+            </ion-col>
+          </ion-item-divider>
+
+          <ion-item-divider>
+            <ion-col size="5">
+              <ion-text>
+                Sub-Category :
+              </ion-text>
+            </ion-col>
+            <ion-col size="7">
+              <ion-text>
+                {{item.subCategory}}
+              </ion-text>
+            </ion-col>
+          </ion-item-divider>
+
+          <ion-item-divider>
+            <ion-col size="5">
+              <ion-text>
+                Item :
+              </ion-text>
+            </ion-col>
+            <ion-col size="7">
+              <ion-text>
+                {{item.item}}
+              </ion-text>
+            </ion-col>
+          </ion-item-divider>
+
+          <ion-item-divider>
+            <ion-col size="5">
+              <ion-text>
+                Expense Period :
+              </ion-text>
+            </ion-col>
+            <ion-col size="7">
+              <ion-text>
+                {{item.expensePeriod}}
+              </ion-text>
+            </ion-col>
+          </ion-item-divider>
+
+          <ion-item-divider>
+            <ion-col size="5">
+              <ion-text>
+                Amount in INR :
+              </ion-text>
+            </ion-col>
+            <ion-col size="7">
+              <ion-text>
+                {{item.amount}}
+              </ion-text>
+            </ion-col>
+          </ion-item-divider>
+
+          <ion-item-divider>
+            <ion-col size="5">
+              <ion-text>
+                Deparment :
+              </ion-text>
+            </ion-col>
+            <ion-col size="7">
+              <ion-text>
+                {{item.department}}
+              </ion-text>
+            </ion-col>
+          </ion-item-divider>
+
+
+          <ion-item-divider>
+            <ion-col size="5">
+              <ion-text>
+                Site Name :
+              </ion-text>
+            </ion-col>
+            <ion-col size="7">
+              <ion-text>
+                {{item.siteName}}
+              </ion-text>
+            </ion-col>
+          </ion-item-divider>
+
+          <ion-item-divider>
+            <ion-col size="5">
+              <ion-text>
+                Expense Center :
+              </ion-text>
+            </ion-col>
+            <ion-col size="7">
+              <ion-text>
+                {{item.expenseCenter}}
+              </ion-text>
+            </ion-col>
+          </ion-item-divider>
+
+          <!-- <ion-item-divider>
+            <ion-col size="5">
+              <ion-text>
+                Comment :
+              </ion-text>
+            </ion-col>
+            <ion-col size="7">
+              <ion-text>
+                  {{item.remarks}}
+              </ion-text>
+            </ion-col>
+          </ion-item-divider> -->
+          <ion-item-divider style="border-bottom:none;">
+            <ion-col size="5">
+              <ion-text>
+                Status :
+              </ion-text>
+            </ion-col>
+            <ion-col size="7">
+              <ion-chip color="success">
+                <ion-icon name="checkmark-circle"></ion-icon>
+                <ion-label>Approved</ion-label>
+              </ion-chip>
+            </ion-col>
+          </ion-item-divider>
+
+        </mat-list>
+      </mat-expansion-panel>
+      <!-- <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <ion-badge color="tertiary"> L1</ion-badge>&nbsp;&nbsp;<span> Azam Rizvi</span>
+            </mat-panel-title>
+            <mat-panel-description>
+              <ion-label slot="end" color="success">Approved</ion-label>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <mat-list>
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Employee Remarks</mat-label>
+              <textarea matInput value="Employee comment" required></textarea>
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Approver Comment</mat-label>
+              <textarea matInput value="Reason for Approved" required></textarea>
+            </mat-form-field>
+          </mat-list>
+        </mat-expansion-panel> -->
+    </mat-accordion>
+  </mat-card>
+  <br>
+</ion-content>

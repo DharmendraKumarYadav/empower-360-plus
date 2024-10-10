@@ -1,0 +1,127 @@
+<mat-toolbar color="primary">
+    <ion-menu-button color="light"></ion-menu-button>
+  <span>Profile </span>
+  <span class="example-fill-remaining-space"></span>
+  <ion-icon name="more"></ion-icon>
+  </mat-toolbar>
+
+<ion-content>
+    <ion-header padding style="background-image:url(./assets/abstract-bg-31.jpg);background-repeat: round;">
+      <ion-avatar style="margin:auto;">
+        <img style="border: 3px solid #fff;" src="./assets/profile-img.jpg">
+      </ion-avatar>
+      <ion-title style="text-align:center; color:#fff;">Rupesh Chavan</ion-title>
+      <ion-card-subtitle style="text-align:center; color:#fff;">(Sr. UI/UX Designer)</ion-card-subtitle>    </ion-header>
+    <mat-tab-group mat-align-tabs="center">
+        <mat-tab label="Personal">
+            <mat-card>
+              <mat-card-subtitle>About Me</mat-card-subtitle>
+              <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-label>Full Name</mat-label>
+                  <input matInput placeholder="" required>
+                </mat-form-field>
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Id Number</mat-label>
+                    <input matInput placeholder="" required>
+                  </mat-form-field>
+                  <mat-form-field appearance="outline">
+                      <mat-label>Gender</mat-label>
+                      <mat-select required>
+                          <mat-option *ngFor="let Gender of genders" [value]="Gender.value">
+                              {{Gender.viewValue}}
+                            </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Date of Joining</mat-label>
+                        <input matInput [matDatepicker]="picker" placeholder="mm/dd/yyyy" required>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                      </mat-form-field>
+                      <mat-form-field appearance="outline">
+                          <mat-label>Maritial Status</mat-label>
+                          <mat-select required>
+                              <mat-option *ngFor="let Status of Status" [value]="Status.value">
+                                  {{Status.viewValue}}
+                                </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width" appearance="outline">
+                            <mat-label>Nationality</mat-label>
+                            <input matInput placeholder="" required>
+                          </mat-form-field>
+                          <mat-form-field class="example-full-width" appearance="outline">
+                              <mat-label>Work Email Id</mat-label>
+                              <input matInput placeholder="" required>
+                            </mat-form-field>
+                            <mat-form-field class="example-full-width" appearance="outline">
+                                <mat-label>Personal Email Id</mat-label>
+                                <input matInput placeholder="" required>
+                              </mat-form-field>
+                              <mat-form-field class="example-full-width" appearance="outline">
+                                  <mat-label>Work Contact Number</mat-label>
+                                  <input matInput placeholder="" required>
+                                </mat-form-field>
+                                <mat-form-field class="example-full-width" appearance="outline">
+                                    <mat-label>Personal Contact Number</mat-label>
+                                    <input matInput placeholder="" required>
+                                  </mat-form-field>
+                                  <mat-form-field class="example-full-width" appearance="outline">
+                                      <mat-label>Current Address</mat-label>
+                                      <textarea matInput placeholder="Leave a comment" required></textarea>
+                                    </mat-form-field>
+                                    <mat-form-field class="example-full-width" appearance="outline">
+                                        <mat-label>Permanent Address</mat-label>
+                                        <textarea matInput placeholder="Leave a comment" required></textarea>
+                                      </mat-form-field>
+                                      <mat-form-field class="example-full-width" appearance="outline">
+                                          <mat-label>Country</mat-label>
+                                          <input matInput placeholder="" required>
+                                        </mat-form-field>
+                                        <mat-form-field class="example-full-width" appearance="outline">
+                                            <mat-label>City</mat-label>
+                                            <input matInput placeholder="" required>
+                                          </mat-form-field>
+                                          <mat-form-field class="example-full-width" appearance="outline">
+                                              <mat-label>State</mat-label>
+                                              <input matInput placeholder="" required>
+                                            </mat-form-field>
+                                            <mat-form-field class="example-full-width" appearance="outline">
+                                                <mat-label>Zip Code</mat-label>
+                                                <input matInput placeholder="" required>
+                                              </mat-form-field>
+                      
+            </mat-card>
+
+            <mat-card>
+                <mat-card-subtitle>Emergency Contact Details</mat-card-subtitle>
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Contact Name</mat-label>
+                    <input matInput placeholder="" required>
+                  </mat-form-field>
+                  <mat-form-field class="example-full-width" appearance="outline">
+                      <mat-label>Contact Number</mat-label>
+                      <input matInput placeholder="" required>
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Relationship</mat-label>
+                        <input matInput placeholder="" required>
+                      </mat-form-field>
+              </mat-card>
+              <mat-grid-list cols="2" rowHeight="4:1">
+                  <mat-grid-tile>
+                      <ion-button style="width: 100%" color="success"><ion-icon name="save"></ion-icon> SAVE</ion-button>
+                    </mat-grid-tile>
+                  <mat-grid-tile>
+                      <ion-button style="width: 100%" color="dark" [routerLink]="['/expense-dashboard']"><ion-icon name="close"></ion-icon> CANCEL</ion-button>
+                  </mat-grid-tile>
+                </mat-grid-list>
+        </mat-tab>
+        <mat-tab label="Educational">
+
+        </mat-tab>
+        <mat-tab label="Professional">
+
+        </mat-tab>
+      </mat-tab-group>
+</ion-content>

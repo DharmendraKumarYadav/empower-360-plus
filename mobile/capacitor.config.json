@@ -1,0 +1,7 @@
+{
+  "appId": "com.example.bookexpense",
+  "appName": "Book Expense",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www"
+}

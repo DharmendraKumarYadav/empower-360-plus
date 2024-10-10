@@ -1,0 +1,45 @@
+<ion-content padding>
+    <ion-row class="spacer">
+        <ion-col size="6" offset="3">
+                <img style="width:300px" src="../../assets/logo.png">
+        </ion-col>
+        <ion-col size="8" offset="2">
+        <ion-text color="primary">
+            <h3 style="color: #3f51b5">EXPENSE BOOKING</h3>
+          </ion-text>
+        </ion-col>
+        </ion-row>
+   
+<form class="example-form" name="loginForm"  #loginForm="ngForm" (ngSubmit)="login()" class="spacer">
+  <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Email</mat-label>
+    <input matInput placeholder="Email" #email="ngModel" name="email" [(ngModel)]="loginModel.email" type="email" required>
+    <mat-error *ngIf="email.invalid">Please enter email</mat-error>    
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Password</mat-label>
+    <input matInput placeholder="Password" #password="ngModel"  name="password" [(ngModel)]="loginModel.password" type="password"  required>
+    <mat-error *ngIf="password.invalid">Please enter password</mat-error>    
+  </mat-form-field>
+
+  <ion-grid>
+    <!-- <ion-row>
+      <ion-col>
+        <div class="ion-text-start">
+          <mat-checkbox>Check me!</mat-checkbox>
+        </div>
+      </ion-col>
+      <ion-col>
+        <div class="ion-text-end">
+          <a>Forgot Password?</a>
+        </div>
+      </ion-col>
+    </ion-row> -->
+    </ion-grid>
+
+  <div class="example-button-row"><br>
+    <button type="submit" [disabled]="!loginForm.form.valid" expand="block" mat-raised-button color="primary">Login</button>
+  </div> 
+</form>
+</ion-content>

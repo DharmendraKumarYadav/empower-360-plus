@@ -1,0 +1,247 @@
+<mat-toolbar color="primary">
+  <ion-menu-button color="light"></ion-menu-button>
+  <span>Approve Booking Detail</span>
+  <span class="example-fill-remaining-space"></span>
+  <ion-icon name="more"></ion-icon>
+</mat-toolbar>
+<ion-content>
+  <mat-card class="example-card">
+    <mat-card-content>
+      <mat-form-field appearance="outline">
+        <mat-label>Category</mat-label>
+        <input matInput [disabled]="true" name="Category" [(ngModel)]="requestEdit.category" type="text" ngModel>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Sub-Category</mat-label>
+        <input matInput [disabled]="true" name="Sub-Category" [(ngModel)]="requestEdit.subCategory" type="text" ngModel>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Items</mat-label>
+        <input matInput [disabled]="true" name="Sub-Category" [(ngModel)]="requestEdit.subCategoryItem" type="text"
+          ngModel>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>From Date</mat-label>
+        <input matInput [matDatepicker]="picker" [disabled]="true" [ngModel]="requestEdit.fromDate | date:'yyyy-MM-dd'"
+          [value]="requestEdit.fromDate | date:'yyyy-MM-dd'" display-format="MM/DD/YYYY" placeholder="mm/dd/yyyy"
+          required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>To Date</mat-label>
+        <input matInput [matDatepicker]="picker1" [disabled]="true" [ngModel]="requestEdit.toDate | date:'yyyy-MM-dd'"
+          [value]="requestEdit.toDate | date:'yyyy-MM-dd'" display-format="MM/DD/YYYY" required>
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Amount</mat-label>
+        <input matInput [disabled]="true" [(ngModel)]="requestEdit.amount">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Functional Department</mat-label>
+        <input matInput [disabled]="true" [(ngModel)]="requestEdit.department">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Site Name</mat-label>
+        <input matInput [disabled]="true" [(ngModel)]="requestEdit.department">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Expense Center</mat-label>
+        <input matInput [disabled]="true" [(ngModel)]="requestEdit.department">
+      </mat-form-field>
+
+
+      <!-- <mat-card-actions>
+                          <button mat-button mat-raised-button color="accent">LIKE</button>
+                          <button mat-button mat-raised-button color="accent">SHARE</button>
+                          </mat-card-actions> -->
+    </mat-card-content>
+  </mat-card>
+  <br>
+  <mat-card class="example-card" *ngIf="requestEdit.status=='1'">
+    <mat-card-header>
+      <mat-card-subtitle>Invite Approver</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+
+        <form name="expenseInviteForm" #expenseInviteForm="ngForm" (ngSubmit)="invite()">
+          <mat-form-field appearance="outline">
+            <mat-label>Invite Approver</mat-label>
+            <mat-select #inviteEmployee="ngModel" required name="inviteEmployee"
+              [(ngModel)]="requestEdit.selectedApprover">
+              <mat-option *ngFor="let item of employeeList" [value]="item.value">
+                {{item.label}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          
+          <mat-grid-list cols="1" rowHeight="6:1">
+            <mat-grid-tile>
+              <button style="width: 100%" color="success" [disabled]="!expenseInviteForm.form.valid" mat-button
+                mat-raised-button color="success">
+                <ion-icon name="send"></ion-icon> Invite
+              </button>
+            </mat-grid-tile>
+
+
+          </mat-grid-list>
+
+        </form>
+ 
+
+    </mat-card-content>
+  </mat-card>
+  <br>
+  <mat-card class="example-card" *ngIf="requestEdit?.expenseDocumentList?.length>0">
+    <mat-card-header>
+      <mat-card-subtitle>Documents</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <ion-item-divider *ngFor="let document of requestEdit.expenseDocumentList; let i=index">
+        <ion-col size="5">
+          <ion-text>
+            {{document.fileName}}
+          </ion-text>
+        </ion-col>
+        <ion-col size="7">
+          <ion-text>
+            <button (click)="download(document)" mat-stroked-button color="accent">
+              <ion-icon name="download"></ion-icon> Download
+            </button>
+          </ion-text>
+        </ion-col>
+      </ion-item-divider>
+
+    </mat-card-content>
+  </mat-card>
+
+  <br>
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-subtitle>Remarks</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-expansion-panel *ngFor="let commentData of items; let i=index">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <ion-badge color="tertiary"> L{{commentData.level+1}}</ion-badge>
+            &nbsp;&nbsp;<span>{{commentData.name}}</span>
+          </mat-panel-title>
+          <mat-panel-description>
+
+            <ion-label slot="end" *ngIf="commentData.status=='Approved'" color="success"> {{commentData.status}}
+            </ion-label>
+            <ion-label slot="end" *ngIf="commentData.status=='Pending'" color="warning"> {{commentData.status}}
+            </ion-label>
+            <ion-label slot="end" *ngIf="commentData.status=='Rejected'" color="danger"> {{commentData.status}}
+            </ion-label>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-list *ngFor="let cooment of commentData.expenseBookingDetailApproverList; let i=index">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Employee Remarks</mat-label>
+            <textarea matInput [disabled]="true" required>{{cooment.employeeComment}}</textarea>
+          </mat-form-field>
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Approver Comment</mat-label>
+            <textarea matInput [disabled]="true" required>{{cooment.managerComment}}</textarea>
+          </mat-form-field>
+        </mat-list>
+        <div *ngFor="let commentInviteData of commentData.expenseBookingIviteApproverList; let i=index">
+          <ion-item style="--background: #4c70b9">
+
+            <ion-label color="light">{{commentInviteData.name}}</ion-label>
+            <ion-badge slot="end" *ngIf="commentInviteData.status=='Approved'" color="success">
+              {{commentInviteData.status}}</ion-badge>
+            <ion-badge slot="end" *ngIf="commentInviteData.status=='Pending'" color="yellow">
+              {{commentInviteData.status}}
+            </ion-badge>
+            <ion-badge slot="end" *ngIf="commentInviteData.status=='Rejected'" color="danger">
+              {{commentInviteData.status}}</ion-badge>
+          </ion-item>
+
+          <div *ngFor="let coomentInvite of commentInviteData.expenseBookingDetailIviteApproverList; let i=index">
+
+            <ion-item>
+              <ion-label position="stacked">Employee Remarks</ion-label>
+              <ion-textarea [disabled]="true">{{coomentInvite.employeeComment}}</ion-textarea>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="stacked">Approver Comment</ion-label>
+              <ion-textarea [disabled]="true">{{coomentInvite.managerComment}}</ion-textarea>
+            </ion-item>
+
+          </div>
+
+
+        </div>
+      </mat-expansion-panel>
+    </mat-card-content>
+  </mat-card>
+  <br>
+  <mat-card class="example-card" *ngIf="requestEdit.status=='1'">
+    <mat-card-header>
+      <mat-card-subtitle>Action</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div *ngIf="requestEdit.isInviteApproved">
+        <form name="expenseFormDetail" #expenseFormDetail="ngForm" (ngSubmit)="save()">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Leave a comment</mat-label>
+            <textarea matInput placeholder="Leave a comment" #comment="ngModel" name="comment"
+              [(ngModel)]="approveReject.comment" type="text" required></textarea>
+            <span class="error_msg" *ngIf="comment.invalid" style="color: red">
+              <!-- <ion-icon name="information-circle-outline"></ion-icon> Comment is required. -->
+            </span>
+          </mat-form-field>
+
+          <ion-item style="float:right;" *ngIf="requestEdit.isSubmitted == false">
+            <ion-button [disabled]="!expenseFormDetail.form.valid" color="success" (click)="onSave(1)" size="small"
+              expand="full">
+              <ion-icon name="checkmark"></ion-icon> Approve
+            </ion-button>
+            <ion-button [disabled]="!expenseFormDetail.form.valid" color="danger" (click)="onSave(2)" size="small"
+              expand="full">
+              <ion-icon name="close"></ion-icon> Reject
+            </ion-button>
+            <ion-button [disabled]="!expenseFormDetail.form.valid" color="secondary" size="small" expand="full"
+              (click)="onSave(3)">
+              <ion-icon name="sync"></ion-icon> Resubmit
+            </ion-button>
+          </ion-item>
+        </form>
+      </div>
+      <!-- <mat-grid-list  *ngIf="requestEdit.isSubmitted == false" cols="4" rowHeight="2:1">
+        <mat-grid-tile>
+          <button style="width: 100%" (click)="onSave(1)" [disabled]="!expenseFormDetail.form.valid" mat-button mat-raised-button color="success">
+            <ion-icon name="send"></ion-icon> APPROVE
+          </button>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <ion-button style="width: 100%" color="danger" [routerLink]="['/expense-dashboard']">
+            <ion-icon name="close"></ion-icon> REJECT
+          </ion-button>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <ion-button style="width: 100%" color="dark" [routerLink]="['/expense-dashboard']">
+            <ion-icon name="close"></ion-icon> RESUBMIT
+          </ion-button>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <ion-button style="width: 100%" color="dark" [routerLink]="['/expense-dashboard']">
+            <ion-icon name="close"></ion-icon> CANCEL
+          </ion-button>
+        </mat-grid-tile>
+      </mat-grid-list> -->
+    </mat-card-content>
+  </mat-card>
+
+
+
+</ion-content>

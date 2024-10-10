@@ -1,0 +1,40 @@
+.icon{
+width:40%;
+display: block;
+margin-top: 0px !important;
+margin-left: auto;
+margin-right: auto;
+  }
+  .card{
+     height: auto;
+     text-align: center;
+     ion-badge{
+        position: absolute;
+        right: 4px;
+        top: 2px;
+        border-radius: 20px;
+        padding: .5em;
+        background: #ff4081;
+     }
+  }
+
+  ion-slides{
+   height: 30vh !important;
+   
+ }
+ .example-container {
+  width: 500px;
+  height: 300px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.example-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.example-sidenav {
+  padding: 20px;
+}
